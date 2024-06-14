@@ -1,0 +1,39 @@
+<launch>
+  <!-- <node pkg="vrpn_client_ros" type="vrpn_client_node" name="vrpn_client_node" output="screen">
+    <rosparam subst_value="true">
+      server: 192.168.43.151
+      port: 3883
+      update_frequency: 10.0
+      frame_id: odom
+      use_server_time: false
+      broadcast_tf: true
+      refresh_tracker_frequency: 1.0
+      offset_x: 8
+      offset_y: 9.11
+    </rosparam>
+  </node> -->
+
+    <node pkg="serial_ros" type="serial_ros_node" name="serial_ros_node" output="screen">
+    <rosparam subst_value="true">
+      name: "/dev/ttyUSB0"
+      baud: 57600
+    </rosparam>
+  </node>
+
+  <!-- <node pkg="robot_localization" type="ekf_localization_node" name="ekf_se" output="screen">
+    <rosparam command="load" file="$(find robot_localization)/params/ekf_template.yaml" />
+  </node> -->
+
+  <node pkg="comm_hub" type="comm_hub_node" name="comm_hub" output="screen">
+    <rosparam command="load" file="$(find comm_hub)/params/config.yaml"/>
+  </node>
+
+  <node pkg="turn_on_qiansheng_robot" type="qiansheng_robot_node" name="qiansheng_robot_node" output="screen">
+  </node>
+
+  <node pkg="pure_pursuit" type="pure_pursuit" name="pure_pursuit" output="screen">
+    <param name = "FilePath" type = "string" value = "$(find pure_pursuit)/" />
+    <rosparam command="load" file="$(find pure_pursuit)/params/config.yaml"/>
+  </node>
+
+</launch>

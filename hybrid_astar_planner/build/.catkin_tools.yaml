@@ -1,0 +1,6 @@
+devel_space: /home/parallels/catkin_ws/src/hybrid_astar_planner/devel
+install: false
+install_space: /home/parallels/catkin_ws/src/hybrid_astar_planner/install
+profile: default
+source_space: /home/parallels/catkin_ws/src/hybrid_astar_planner/src
+workspace: /home/parallels/catkin_ws/src/hybrid_astar_planner
