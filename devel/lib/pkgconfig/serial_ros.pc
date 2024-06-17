@@ -1,8 +1,0 @@
-prefix=/home/parallels/Hybrid-Astar/devel
-
-Name: serial_ros
-Description: Description of serial_ros
-Version: 0.0.0
-Cflags: -I/home/parallels/Hybrid-Astar/devel/include
-Libs: -L${prefix}/lib 
-Requires: roscpp std_msgs message_runtime
