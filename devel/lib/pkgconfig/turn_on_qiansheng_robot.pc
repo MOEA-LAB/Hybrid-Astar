@@ -1,0 +1,8 @@
+prefix=/home/parallels/Hybrid-Astar/devel
+
+Name: turn_on_qiansheng_robot
+Description: Description of turn_on_qiansheng_robot
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 

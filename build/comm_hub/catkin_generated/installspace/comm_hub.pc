@@ -1,0 +1,8 @@
+prefix=/home/parallels/Hybrid-Astar/install
+
+Name: comm_hub
+Description: Description of comm_hub
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 

@@ -1,0 +1,2 @@
+Pure_Pursuit:comm_hub:path_planner:serial_ros:turn_on_qiansheng_robot
+-DCATKIN_DEVEL_PREFIX=/home/parallels/Hybrid-Astar/devel -DCMAKE_INSTALL_PREFIX=/home/parallels/Hybrid-Astar/install -G Unix Makefiles

@@ -1,0 +1,8 @@
+prefix=/home/parallels/Hybrid-Astar/install
+
+Name: hybrid_astar
+Description: Description of hybrid_astar
+Version: 0.0.2
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 
