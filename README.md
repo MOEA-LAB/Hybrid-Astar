@@ -1,187 +1,116 @@
-## 1.基本介绍
-### 1.1 项目介绍
-smart_car是一个基于ROS的智能车控制程序
+### Hybrid A* Path Planner for the KTH Research Concept Vehicle [![Build Status](https://app.travis-ci.com/karlkurzer/path_planner.svg?branch=master)](https://travis-ci.org/karlkurzer/path_planner)
 
-## 2.功能包(package)介绍
+This repository contains the implementation of a Hybrid A* Path Planner for autonomous vehicles, specifically developed for the KTH Research Concept Vehicle. The Hybrid A* algorithm is a powerful path planning approach that combines the benefits of A* search in continuous space with a discretized set of headings. It enables the generation of efficient and smooth paths for nonholonomic vehicles navigating complex environments.
 
-**2.4和2.6功能包分别使用了串口和wifi来实现了动捕数据接收功能，使用时只需要启用其中一个即可，两种方式切换方法为修改comm_hub/launch/start.launch中启动的节点**
+#### Table of Contents
+* [Introduction](#introduction)
+* [Characteristics](#characteristics)
+* [Videos](#videos)
+* [Images](#images)
+* [Dependencies](#dependencies)
+* [Setup](#setup)
+* [Visualization](#visualization)
+* [Citation](#citation)
 
-### 2.1 collision_avoid
-ROS 智能车自动避障包
+#### Introduction
+The code in this repository is the result of my master's thesis which I have written at the Integrated Research Lab (ITRL) at KTH Royal Institute of Technology (2016).
+The code is documented [here](https://karlkurzer.github.io/path_planner) and the associated thesis can be found [here](https://urn.kb.se/resolve?urn=urn:nbn:se:kth:diva-198534).
+
+
+The goal of the thesis and hence this code is to create a real-time path planning algorithm for the nonholonomic Research Concept Vehicle (RCV). The algorithm uses a binary obstacle map as an input, generated using LIDAR mounted on top of the vehicle. The algorithm is being developed using C++ due to real-time requirements in combination with ROS to ensure modularity and portability as well as using RViz as a visualization/simulation environment.
+
+#### <a name="characteristics"></a>Key Characteristics
+* Sampling in continuous space with 72 different headings per cell (5° discretization)
+* Constrained Heuristic - _nonholonomic without obstacles_
+* Unconstrained Heuristic - _holonomic with obstacles_
+* Dubin's Shot
+* C++ real-time implementation (~10 Hz)
+
+Large parts of the implementation are closely related to the hybrid A* algorithm developed by Dmitri Dolgov and Sebastian Thrun (_Path Planning for Autonomous Vehicles in Unknown Semi-structured Environments_ DOI: 10.1177/0278364909359210)
+
+#### <a name="videos"></a>Videos
+* [Path Planning with Search Visualization](https://www.youtube.com/watch?v=1WZEQtg8ZZ4)
+* [Dubin's Path - Constrained Heuristic](https://www.youtube.com/watch?v=VNo9fU6XEGE)
+* [2D A* Search - Unconstrained Heuristic](https://www.youtube.com/watch?v=Ip2iUrVoFXc)
+* [Open Loop Path Planning using Sensor Fusion](https://www.youtube.com/watch?v=GwIU00jukO4)
+
+#### <a name="images"></a>Images
+<img src="https://i.imgur.com/OICPCTB.png" alt="Reversing in a Maze" width="600"/>
+<img src="https://i.imgur.com/ZiV9GDW.png" alt="Parking" width="600"/>
+<img src="https://i.imgur.com/z7aT6lt.png" alt="Mitigating a U-shape Obstacle" width="600"/>
+
+#### <a name="dependencies"></a>Dependencies
+* [Open Motion Planning Library (OMPL)](http://ompl.kavrakilab.org/)
+* [ros_map_server](https://wiki.ros.org/map_server)
+
+#### <a name="setup"></a>Setup
+
+Run the following command to clone, build, and launch the package (requires a sources ROS environment):
+
 ```
-    ├── collision_avoid
-        ├── include                         
-        │   └── collision_avoid.h           (自动避障头文件)
-        ├── src                             
-        │   ├── collision_avoid_node.cpp    (节点源文件)
-        │   └── collision_avoid.cpp         (自动避障源文件)
-        ├── CMakeLists.txt                  (CMake文件)
-        └── package.xml                     (信息描述文件)                     
+sudo apt install libompl-dev \
+&& mkdir -p ~/catkin_ws/src \
+&& cd ~/catkin_ws/src \
+&& git clone https://github.com/karlkurzer/path_planner.git  \
+&& cd .. \
+&& catkin_make \
+&& source devel/setup.bash \
+&& rospack profile \
+&& roslaunch hybrid_astar manual.launch
 ```
+#### <a name="visualization"></a>Visualization (Rviz)
+1. Add -> By Topic -> `/map`, `/path`, `/pathVehicle`, (`/visualizeNode2DPoses`)
+2. Click 2D Pose Estimate to set a start point on the map (`p`)
+3. Click 2D Nav Goal to set a goal point on the map (`g`)
+4. Wait for the path being searched! (this process can be visualized [optional])
 
-### 2.2 comm_hub
-ROS 智能车数据上报包（程序启动入口包）
-```
-    ├── comm_hub
-        ├── include
-        │   ├── nlohmann                        
-        │   │   └── json.hpp        (第三方json库)
-        │   ├── comm_hub.h          (数据上报类头文件)
-        │   ├── myMsg.h             (信息封装函数头文件)
-        │   └── myUdp.h             (UDP类头文件)
-        ├── src                             
-        │   ├── comm_hub_node.cpp   (节点源文件)
-        │   ├── comm_hub.cpp        (数据上报类源文件)
-        │   ├── myMsg.cpp           (节点源文件)
-        │   └── myUdp.cpp           (自动避障源文件)
-        ├── params
-        │   └── config.yaml         (参数配置文件)
-        ├── launch
-·        │   └── start.launch        (程序启动launch文件)
-        ├── CMakeLists.txt          (CMake文件)
-        └── package.xml             (信息描述文件)                     
-```
+#### <a name="citation"></a>Citation
+I would appreciate if you cite my work, in case you are using it for your work. Thank you :-)
 
-### 2.3 Pure_Pursuit
-ROS 纯跟踪算法包
-```
-    ├── Pure_Pursuit
-        ├── External
-        │   └── Eigen                   (第三方库 不展开说明)  
-        ├── include
-        │   ├── arc_length_spline.h 
-        │   ├── cubic_spline.h          
-        │   ├── pure_pursuit.h          (纯跟踪算法类头文件)
-        │   └── track.h           
-        ├── src                             
-        │   ├── arc_length_spline.cpp 
-        │   ├── cubic_spline.cpp          
-        │   ├── pure_pursuit_node.cpp   (节点源文件)
-        │   ├── pure_pursuit.cpp        (纯跟踪算法类源文件)
-        │   └── track.cpp 
-        ├── routes                      (路径存储文件夹)
-        ├── params
-        │   └── config.yaml             (参数配置文件)
-        ├── CMakeLists.txt              (CMake文件)
-        └── package.xml                 (信息描述文件)                     
-```
-
-### 2.4 serial_ros
-ROS 串口数据接收包
-```
-    ├── serial_ros
-        ├── include
-        │   ├── nlohmann                        
-        │   │   └── json.hpp            (第三方json库)
-        │   └── serial_ros.h            (串口数据接收类头文件)
-        ├── src    
-        │   ├── serial_ros_node.cpp     (节点源文件)
-        │   └── serial_ros.cpp          (串口数据接收类源文件)                         
-        ├── msg    
-        │   └── PoseMsgs.msg            (自定义话题topic格式)                         
-        ├── CMakeLists.txt              (CMake文件)
-        └── package.xml                 (信息描述文件)                     
-```
-
-### 2.5 turn_on_qiansheng_robot
-ROS 底盘控制包
-**非特殊情况无需修改，故不做展开说明**
-
-### 2.6 vrpn_client_ros-kinetic-devel
-ROS VRPN客户端包(用于接收动捕定位数据)
-**非特殊情况无需修改，故不做展开说明**
-
-## 3.话题(topic)介绍
-可使用**rostopic list**命令查看ros中所有话题(topic)信息(加-v显示详细信息，即**rostopic list -v**)
-可使用**rostopic echo /A**命令输出ros中A话题(topic)的实时数据
-其余命令请自行查找rostopic相关资料
-
-
-| 话题 | 类型 | 所需头文件 | 功能 |
-| ---- | ---- | ---- | ---- |
-| /PowerVoltage | [std_msgs/Float32] | <std_msgs/Float32.h> | 
-| /cmd_vel | [geometry_msgs/TwistStamped] | <geometry_msgs/TwistStamped.h> |
-| /collision_avoid_ctrl | [std_msgs/UInt32] | <std_msgs/UInt32.h> |
-| /ctrl_run | [std_msgs/Bool] | <std_msgs/Bool.h> |
-| /ctrl_speed | [std_msgs/UInt32] | <std_msgs/UInt32.h> |
-| /ctrl_switch_mode | [std_msgs/UInt32] | <std_msgs/UInt32.h> |
-| /imu | [sensor_msgs/Imu] | <sensor_msgs/Imu.h> |
-| /motion_capture_pose | [geometry_msgs/PoseWithCovarianceStamped] | <geometry_msgs/PoseWithCovarianceStamped.h> |
-| /motion_capture_pose_all | [serial_ros/PoseMsgs] | "serial_ros/PoseMsgs.h" |
-| /odom | [nav_msgs/Odometry] | <nav_msgs/Odometry.h> |
-| /vrpn_client_node/CarX/pose | [geometry_msgs/PoseWithCovarianceStamped] | <geometry_msgs/PoseWithCovarianceStamped.h> |
-
-## 4.简要示例
-**以下代码仅供参考，请自行添加至功能包(package)后使用**
-
-话题(topic)发布示例，用/cmd_vel作为示例
-```
-#include "ros/ros.h"
-#include <geometry_msgs/TwistStamped.h>
-
-int main(int argc, char **argv)
-{
-    int seq;
-    double cmd_vel_linear;
-    double cmd_vel_angular;
-
-    ros::Publisher control_pub;
-    control_pub = n.advertise<geometry_msgs::TwistStamped>("/cmd_vel", 10, true);
-
-    ros::Time curTime = ros::Time::now();
-    geometry_msgs::TwistStamped twist_stam;
-    twist_stam.header.seq = seq++;
-    twist_stam.header.stamp = curTime;
-    twist_stam.header.frame_id = "base_link";
-
-    geometry_msgs::Vector3 linear;
-    linear.x = cmd_vel_linear;
-    linear.y = 0;
-    linear.z = 0;
-    geometry_msgs::Vector3 angular;
-    angular.x = 0;
-    angular.y = 0;
-    angular.z = cmd_vel_angular;
-
-    twist_stam.twist.linear = linear;
-    twist_stam.twist.angular = angular;
-
-    control_pub.publish(twist_stam);
-
-    return 0;
+```bibtex
+@mastersthesis{Kurzer1057261,
+	title        = {Path Planning in Unstructured Environments : A Real-time Hybrid A* Implementation for Fast and Deterministic Path Generation for the KTH Research Concept Vehicle},
+	author       = {Kurzer, Karl},
+	year         = 2016,
+	series       = {TRITA-AVE},
+	number       = {2016:41},
+	pages        = 63,
+	issn         = {1651-7660},
+	institution  = {KTH, Integrated Transport Research Lab, ITRL},
+	school       = {KTH, Integrated Transport Research Lab, ITRL},
+	abstract     = {On the way to fully autonomously driving vehicles a multitude of challenges have to be overcome. One common problem is the navigation of the vehicle from a start pose to a goal pose in an environment that does not provide any specic structure (no preferred ways of movement). Typical examples of such environments are parking lots or construction sites; in these scenarios the vehicle needs to navigate safely around obstacles ideally using the optimal (with regard to a specied parameter) path between the start and the goal pose. The work conducted throughout this master's thesis focuses on the development of a suitable path planning algorithm for the Research Concept Vehicle (RCV) of the Integrated Transport Research Lab (ITRL) at KTH Royal Institute of Technology, in Stockholm, Sweden. The development of the path planner requires more than just the pure algorithm, as the code needs to be tested and respective results evaluated. In addition, the resulting algorithm needs to be wrapped in a way that it can be deployed easily and interfaced with di erent other systems on the research vehicle. Thus the thesis also tries to gives insights into ways of achieving realtime capabilities necessary for experimental testing as well as on how to setup a visualization environment for simulation and debugging.}
 }
 ```
 
-话题(topic)订阅示例，用/motion_capture_pose作为示例
-```
-#include "ros/ros.h"
-#include "geometry_msgs/PoseWithCovarianceStamped.h"
-#include <tf/transform_datatypes.h>
-
-void _MotionCapturePoseCallback(const nav_msgs::Odometry &msg){
-    tf::Quaternion quat;
-    tf::quaternionMsgToTF(msg.pose.pose.orientation, quat);
-    double roll, pitch, yaw;
-    tf::Matrix3x3(quat).getRPY(roll, pitch, yaw);
-    yaw = yaw + PI / 2 + m_angleError;
-
-    // 朝向角
-    yaw = yaw;
-    // x
-    auto x = msg.pose.pose.position.x;
-    // y
-    auto y = msg.pose.pose.position.y;
-}
-
-int main(int argc, char **argv)
-{
-    // 订阅名为"motion_capture_pose"的话题，最后一个参数为回调函数，当接收到新消息时会调用这个函数
-    ros::Subscriber motion_capture_pose_sub;
-    motion_capture_pose_sub = n.subscribe("/motion_capture_pose", 10, _MotionCapturePoseCallback);
-    
-    // 回调处理函数
-    ros::spin();
-
-    return 0;
-}
-```
+##### Cited By (not complete)
+- O. Angatkina, A. G. Alleyne, A. Wissa, ‘Robust design and evaluation of a novel modular origami-enabled mobile robot (OSCAR)’, Journal of Mechanisms and Robotics, 2022.
+- I. Chichkanov M. Shawin, ‘Algorithm for Finding the Optimal Obstacle Avoidance Maneuver for Wheeled Robot Moving Along Trajectory’, 2022 16th International Conference on Stability and Oscillations of Nonlinear Control Systems (Pyatnitskiy’s Conference), 2022.
+- T. Guan, Z. He, R. Song, D. Manocha, L. Zhang, ‘Tns: Terrain traversability mapping and navigation system for autonomous excavators’, Proceedings of Robotics: Science and Systems, New York City, NY, USA, 2022.
+- T. Miao, E. El Amam, P. Slaets, D. Pissoort, ‘An improved real-time collision-avoidance algorithm based on Hybrid A* in a multi-object-encountering scenario for autonomous surface vessels’, Ocean Engineering, 2022.
+- C. Zhang, M. Song, J. Wang, ‘A convolution-based grid map reconfiguration method for autonomous driving in highly constrained environments’, 2022 IEEE Intelligent Vehicles Symposium (IV), 2022.
+- O. Angatkina, ‘Design and control of an origami-enabled soft crawling autonomous robot (OSCAR)’, University of Illinois at Urbana-Champaign, 2021.
+- Y. Chung Y.-P. Yang, ‘Hardware-in-the-Loop Simulation of Self-Driving Electric Vehicles by Dynamic Path Planning and Model Predictive Control’, Electronics, 2021.
+- G. Huang, L. Yang, Y. Cai, D. Zhang, ‘Terrain classification-based rover traverse planner with kinematic constraints for Mars exploration’, Planetary and Space Science, 2021.
+- T.-W. Kang, J.-G. Kang, J.-W. Jung, ‘A Bidirectional Interpolation Method for Post-Processing in Sampling-Based Robot Path Planning’, Sensors, 2021.
+- B. Maity κ.ά., ‘Chauffeur: Benchmark Suite for Design and End-to-End Analysis of Self-Driving Vehicles on Embedded Systems’, ACM Transactions on Embedded Computing Systems (TECS), 2021.
+- J. P. Moura Others, ‘Investigação do desempenho do planejador de trajetórias Motion Planning Networks’, 2021.
+- X. Shi, J. Zhang, C. Liu, H. Chi, K. Chen, ‘State estimation and reconstruction of non-cooperative targets based on kinematic model and direct visual odometry’, 2021 IEEE 11th Annual International Conference on CYBER Technology in Automation, Control, and Intelligent Systems (CYBER), 2021.
+- B. Tang, K. Hirota, X. Wu, Y. Dai, Z. Jia, ‘Path planning based on improved hybrid A* algorithm’, Journal of Advanced Computational Intelligence and Intelligent Informatics, 2021.
+- S. Zhang, Z. Jian, X. Deng, S. Chen, Z. Nan, N. Zheng, ‘Hierarchical Motion Planning for Autonomous Driving in Large-Scale Complex Scenarios’, IEEE Transactions on Intelligent Transportation Systems, 2021.
+- Z. Zhang, Y. Wan, Y. Wang, X. Guan, W. Ren, G. Li, ‘Improved hybrid A* path planning method for spherical mobile robot based on pendulum’, International Journal of Advanced Robotic Systems, 2021.
+- Z. Zhang, R. Wu, Y. Pan, Y. Wang, G. Li, ‘Initial pose estimation and update during robot path planning loop’, 2021 China Automation Congress (CAC), 2021.
+- J. Zhao, Z. Zhang, Z. Xue, L. Li, ‘A Hierarchical Vehicle Motion Planning Method For Cruise In Parking Area’, 2021 5th CAA International Conference on Vehicular Control and Intelligence (CVCI), 2021.
+- S. Arshad, M. Sualeh, D. Kim, D. Van Nam, G.-W. Kim, ‘Clothoid: an integrated hierarchical framework for autonomous driving in a dynamic urban environment’, Sensors, 2020.
+- S. Bø, ‘Motion planning for terrain vehicles: Path generation with radial-constrained A* and trajectory optimization’, NTNU, 2020.
+- H. Esteban Cabezos, ‘Optimization of the Parking Manoeuvre for a 1-Trailer Truck’. 2020.
+- S. Koziol, ‘Multi-Objective Path Planning for Autonomous Robots Using Reconfigurable Analog VLSI’, IEEE Access, 2020.
+- J. Krook, R. Kianfar, M. Fabian, ‘Formal synthesis of safe stop tactical planners for an automated vehicle’, IFAC-PapersOnLine, 2020.
+- S. Luo, X. Li, Z. Sun, ‘An optimization-based motion planning method for autonomous driving vehicle’, 2020 3rd International Conference on Unmanned Systems (ICUS), 2020.
+- K. Narula, S. Worrall, E. Nebot, ‘Two-level hierarchical planning in a known semi-structured environment’, 2020 IEEE 23rd International Conference on Intelligent Transportation Systems (ITSC), 2020.
+- N. D. Van, M. Sualeh, D. Kim, G.-W. Kim, ‘A hierarchical control system for autonomous driving towards urban challenges’, Applied Sciences, 2020.
+- N. Van Dinh, Y.-G. Ha, G.-W. Kim, ‘A Universal Control System for Self-Driving Car Towards Urban Challenges’, 2020 IEEE International Conference on Big Data and Smart Computing (BigComp), 2020.
+- P.-J. Wang, Lidar A*, an Online Visibility-Based Decomposition and Search Approach for Real-Time Autonomous Vehicle Motion Planning. University of California, Santa Cruz, 2020.
+- Z. Zhao L. Bi, ‘A new challenge: Path planning for autonomous truck of open-pit mines in the last transport section’, Applied Sciences, 2020.
+- J. Krook, L. Svensson, Y. Li, L. Feng, M. Fabian, ‘Design and formal verification of a safe stop supervisor for an automated vehicle’, 2019 International Conference on Robotics and Automation (ICRA), 2019.
+- D. Nemec, M. Gregor, E. Bubenikova, M. Hruboš, R. Pirník, ‘Improving the Hybrid A* method for a non-holonomic wheeled robot’, International Journal of Advanced Robotic Systems, 2019.
+- S. Zhang, Y. Chen, S. Chen, N. Zheng, ‘Hybrid A*-based curvature continuous path planning in complex dynamic environments’, 2019 IEEE Intelligent Transportation Systems Conference (ITSC), 2019.

@@ -1,0 +1,26 @@
+{
+  "configurations": [
+    {
+      "browse": {
+        "databaseFilename": "${default}",
+        "limitSymbolsToIncludedHeaders": false
+      },
+      "includePath": [
+        "/home/parallels/Hybrid-Astar/devel/include/**",
+        "/opt/ros/noetic/include/**",
+        "/home/parallels/Hybrid-Astar/src/comm_hub/include/**",
+        "/home/parallels/Hybrid-Astar/src/path_planner/include/**",
+        "/home/parallels/Hybrid-Astar/src/Pure_Pursuit/include/**",
+        "/home/parallels/Hybrid-Astar/src/serial_ros/include/**",
+        "/home/parallels/Hybrid-Astar/src/turn_on_qiansheng_robot/include/**",
+        "/usr/include/**"
+      ],
+      "name": "ROS",
+      "intelliSenseMode": "gcc-arm64",
+      "compilerPath": "/usr/bin/gcc",
+      "cStandard": "gnu11",
+      "cppStandard": "c++14"
+    }
+  ],
+  "version": 4
+}
