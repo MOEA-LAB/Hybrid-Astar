@@ -204,9 +204,9 @@ void Planner::plan() {
     // CREATE THE UPDATED PATH
     path.updatePath(smoother.getPath());
     // SMOOTH THE PATH
-    smoother.smoothPath(voronoiDiagram);
+    // smoother.smoothPath(voronoiDiagram);
     // CREATE THE UPDATED PATH
-    smoothedPath.updatePath(smoother.getPath());
+    // smoothedPath.updatePath(smoother.getPath());
     ros::Time t1 = ros::Time::now();
     ros::Duration d(t1 - t0);
     std::cout << "TIME in ms: " << d * 1000 << std::endl;
@@ -216,16 +216,19 @@ void Planner::plan() {
     path.publishPath();
     path.publishPathNodes();
     path.publishPathVehicles();
-    smoothedPath.publishPath();
-    smoothedPath.publishPathNodes();
-    smoothedPath.publishPathVehicles();
-    visualization.publishNode3DCosts(nodes3D, width, height, depth);
-    visualization.publishNode2DCosts(nodes2D, width, height);
+    // smoothedPath.publishPath();
+    std::cout << "publishing path" << std::endl;
+    // smoothedPath.publishPathNodes();
+    
+    // smoothedPath.publishPathVehicles();
+    std::cout<<"publishing path vehicles"<<std::endl;
+    // visualization.publishNode3DCosts(nodes3D, width, height, depth);
+    // visualization.publishNode2DCosts(nodes2D, width, height);
 
 
 
-    delete [] nodes3D;
-    delete [] nodes2D;
+    // delete [] nodes3D;
+    // delete [] nodes2D;
 
   } else {
     std::cout << "missing goal or start" << std::endl;
