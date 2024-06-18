@@ -52,6 +52,9 @@ class CollisionDetection {
 
     // 2D collision test
     if (t == 99) {
+      // std::cout<<!grid->data[node->getIdx()]<<" ";
+      std::cout << node->getIdx()<< " ";
+      // std::cout << grid->data.size()<<std::endl;
       return !grid->data[node->getIdx()];
     }
 
@@ -86,7 +89,16 @@ class CollisionDetection {
   /*!
      \brief updates the grid with the world map
   */
-  void updateGrid(nav_msgs::OccupancyGrid::Ptr map) {grid = map;}
+  void updateGrid(nav_msgs::OccupancyGrid::Ptr map) {grid = map;// Ensure grid is not empty
+    // if (grid && !grid->data.empty()) {
+    //     for (int i = 0; i < grid->data.size(); ++i) {
+    //         std::cout << !(grid->data[i]) << " ";// 0 or 100, 0 is transitable
+    //     }
+    //     std::cout << std::endl; 
+    // } else {
+    //     std::cerr << "Error: Grid is empty or null." << std::endl;
+    // }
+  }
 
  private:
   /// The occupancy grid
