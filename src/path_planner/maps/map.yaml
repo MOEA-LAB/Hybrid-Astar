@@ -1,6 +1,6 @@
 #image: map_demo.png
 #resolution: 1
-image: map3.png
+image: map.png
 resolution: 1
 origin: [0.0, 0.0, 0.0]
 occupied_thresh: 0.03

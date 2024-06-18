@@ -59,7 +59,7 @@ class Node2D {
   /// set the cost-to-come (heuristic value)
   void setH(const float& h) { this->h = h; }
   /// set and get the index of the node in the 2D array
-  int setIdx(int width) { this->idx = y * width + x;std::cout<<"x"<<x<<" "<<"y"<<y<<" ";return idx;}
+  int setIdx(int width) { this->idx = y * width + x;return idx;}
   /// open the node
   void open() { o = true; c = false; }
   /// close the node

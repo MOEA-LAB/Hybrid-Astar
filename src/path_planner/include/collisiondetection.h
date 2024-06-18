@@ -52,9 +52,6 @@ class CollisionDetection {
 
     // 2D collision test
     if (t == 99) {
-      // std::cout<<!grid->data[node->getIdx()]<<" ";
-      std::cout << node->getIdx()<< " ";
-      // std::cout << grid->data.size()<<std::endl;
       return !grid->data[node->getIdx()];
     }
 
