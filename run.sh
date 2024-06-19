@@ -1,1 +1,2 @@
-source devel/setup.bash && rospack profile && roslaunch hybrid_astar manual.launch
+source devel/setup.bash
+roslaunch hybrid_a_star run_hybrid_a_star.launch
