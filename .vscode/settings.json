@@ -1,13 +1,30 @@
 {
-    "python.autoComplete.extraPaths": [
-        "/home/parallels/Hybrid-Astar/devel/lib/python3/dist-packages",
-        "/opt/ros/noetic/lib/python3/dist-packages"
+    "editor.formatOnSave": true,
+    "C_Cpp.clang_format_fallbackStyle": "Google",
+    "C_Cpp.clang_format_style": "{ BasedOnStyle: Google, IndentWidth: 2, ColumnLimit: 90, BreakBeforeBraces: Allman }",
+    "editor.tabSize": 2,
+    "[cpp]": {
+        "editor.defaultFormatter": "ms-vscode.cpptools"
+    },
+    "editor.rulers": [
+        100
     ],
-    "python.analysis.extraPaths": [
-        "/home/parallels/Hybrid-Astar/devel/lib/python3/dist-packages",
-        "/opt/ros/noetic/lib/python3/dist-packages"
-    ],
+    "editor.wordWrap": "off",
     "files.associations": {
+        "ostream": "cpp",
+        "array": "cpp",
+        "deque": "cpp",
+        "forward_list": "cpp",
+        "list": "cpp",
+        "string": "cpp",
+        "unordered_map": "cpp",
+        "unordered_set": "cpp",
+        "vector": "cpp",
+        "string_view": "cpp",
+        "hash_map": "cpp",
+        "hash_set": "cpp",
+        "initializer_list": "cpp",
+        "valarray": "cpp",
         "cctype": "cpp",
         "clocale": "cpp",
         "cmath": "cpp",
@@ -20,7 +37,6 @@
         "ctime": "cpp",
         "cwchar": "cpp",
         "cwctype": "cpp",
-        "array": "cpp",
         "atomic": "cpp",
         "strstream": "cpp",
         "bit": "cpp",
@@ -30,14 +46,8 @@
         "complex": "cpp",
         "condition_variable": "cpp",
         "cstdint": "cpp",
-        "deque": "cpp",
-        "forward_list": "cpp",
-        "list": "cpp",
         "map": "cpp",
         "set": "cpp",
-        "unordered_map": "cpp",
-        "unordered_set": "cpp",
-        "vector": "cpp",
         "exception": "cpp",
         "algorithm": "cpp",
         "functional": "cpp",
@@ -48,17 +58,12 @@
         "optional": "cpp",
         "random": "cpp",
         "ratio": "cpp",
-        "string": "cpp",
-        "string_view": "cpp",
         "system_error": "cpp",
         "tuple": "cpp",
         "type_traits": "cpp",
         "utility": "cpp",
-        "hash_map": "cpp",
-        "hash_set": "cpp",
         "fstream": "cpp",
         "future": "cpp",
-        "initializer_list": "cpp",
         "iomanip": "cpp",
         "iosfwd": "cpp",
         "iostream": "cpp",
@@ -66,7 +71,6 @@
         "limits": "cpp",
         "mutex": "cpp",
         "new": "cpp",
-        "ostream": "cpp",
         "shared_mutex": "cpp",
         "sstream": "cpp",
         "stdexcept": "cpp",
@@ -76,8 +80,14 @@
         "cinttypes": "cpp",
         "typeindex": "cpp",
         "typeinfo": "cpp",
-        "valarray": "cpp",
-        "variant": "cpp",
-        "nnls": "cpp"
-    }
+        "variant": "cpp"
+    },
+    "python.autoComplete.extraPaths": [
+        "/home/parallels/Hybrid-Astar/devel/lib/python3/dist-packages",
+        "/opt/ros/noetic/lib/python3/dist-packages"
+    ],
+    "python.analysis.extraPaths": [
+        "/home/parallels/Hybrid-Astar/devel/lib/python3/dist-packages",
+        "/opt/ros/noetic/lib/python3/dist-packages"
+    ]
 }

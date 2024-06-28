@@ -33,6 +33,7 @@ GoalPoseSubscriber2D::GoalPoseSubscriber2D(ros::NodeHandle &nh, const std::strin
     );
 }
 
+/* goal callback */
 void GoalPoseSubscriber2D::MessageCallBack(const geometry_msgs::PoseStampedPtr &goal_pose_ptr) {
     buff_mutex_.lock();
     goal_poses_.emplace_back(goal_pose_ptr);

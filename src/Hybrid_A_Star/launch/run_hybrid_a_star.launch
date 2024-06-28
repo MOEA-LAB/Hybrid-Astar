@@ -14,15 +14,15 @@
     <node pkg="map_server" type="map_server" name="map_server" args="$(find hybrid_a_star)/maps/map.yaml"/>
 
     <node pkg="hybrid_a_star" type="run_hybrid_astar" name="run_hybrid_astar" output="screen">
-        <param name="planner/steering_angle" value="15.0"/>
+        <param name="planner/steering_angle" value="10.0"/>
         <param name="planner/steering_angle_discrete_num" value="1"/>
         <param name="planner/wheel_base" value="2.0"/>
         <param name="planner/segment_length" value="1.6"/>
         <param name="planner/segment_length_discrete_num" value="8"/>
         <param name="planner/steering_penalty" value="1.5"/>
-        <param name="planner/reversing_penalty" value="10000.0"/>
+        <param name="planner/reversing_penalty" value="1000.0"/>
         <param name="planner/steering_change_penalty" value="2.0"/>
-        <param name="planner/shot_distance" value="5.0"/>
+        <param name="planner/shot_distance" value="2.0"/>
     </node>
 
 </launch>

@@ -28,58 +28,60 @@
 #ifndef HYBRID_A_STAR_HYBRID_A_STAR_FLOW_H
 #define HYBRID_A_STAR_HYBRID_A_STAR_FLOW_H
 
-#include "hybrid_a_star.h"
-#include "costmap_subscriber.h"
-#include "init_pose_subscriber.h"
-#include "goal_pose_subscriber.h"
-
 #include <ros/ros.h>
 
-class HybridAStarFlow {
-public:
-    HybridAStarFlow() = default;
+#include "costmap_subscriber.h"
+#include "goal_pose_subscriber.h"
+#include "hybrid_a_star.h"
+#include "init_pose_subscriber.h"
 
-    explicit HybridAStarFlow(ros::NodeHandle &nh);
+class HybridAStarFlow
+{
+ public:
+  HybridAStarFlow() = default;
 
-    void Run();
+  explicit HybridAStarFlow(ros::NodeHandle &nh);
 
-private:
-    void InitPoseData();
+  void Run();
 
-    void ReadData();
+ private:
+  void InitPoseData();
 
-    bool HasStartPose();
+  void ReadData();
 
-    bool HasGoalPose();
+  bool HasStartPose();
 
-    void PublishPath(const VectorVec3d &path);
+  bool HasGoalPose();
 
-    void PublishSearchedTree(const VectorVec4d &searched_tree);
+  void PublishPath(const VectorVec3d &path);
 
-    void PublishVehiclePath(const VectorVec3d &path, double width,
-                            double length, unsigned int vehicle_interval);
+  void PublishSearchedTree(const VectorVec4d &searched_tree);
 
-private:
-    std::shared_ptr<HybridAStar> kinodynamic_astar_searcher_ptr_;
-    std::shared_ptr<CostMapSubscriber> costmap_sub_ptr_;
-    std::shared_ptr<InitPoseSubscriber2D> init_pose_sub_ptr_;
-    std::shared_ptr<GoalPoseSubscriber2D> goal_pose_sub_ptr_;
+  void PublishVehiclePath(const VectorVec3d &path, double width, double length,
+                          unsigned int vehicle_interval);
 
-    ros::Publisher path_pub_;
-    ros::Publisher searched_tree_pub_;
-    ros::Publisher vehicle_path_pub_;
+ private:
+  std::shared_ptr<HybridAStar> kinodynamic_astar_searcher_ptr_;
+  std::shared_ptr<CostMapSubscriber> costmap_sub_ptr_;
+  std::shared_ptr<InitPoseSubscriber2D> init_pose_sub_ptr_;
+  std::shared_ptr<GoalPoseSubscriber2D> goal_pose_sub_ptr_;
 
-    std::deque<geometry_msgs::PoseWithCovarianceStampedPtr> init_pose_deque_;
-    std::deque<geometry_msgs::PoseStampedPtr> goal_pose_deque_;
-    std::deque<nav_msgs::OccupancyGridPtr> costmap_deque_;
+  ros::Publisher path_pub_;
+  ros::Publisher searched_tree_pub_;
+  ros::Publisher vehicle_path_pub_;
 
-    geometry_msgs::PoseWithCovarianceStampedPtr current_init_pose_ptr_;
-    geometry_msgs::PoseStampedPtr current_goal_pose_ptr_;
-    nav_msgs::OccupancyGridPtr current_costmap_ptr_;
+  std::deque<geometry_msgs::PoseWithCovarianceStampedPtr> init_pose_deque_;
+  std::deque<geometry_msgs::PoseStampedPtr> goal_pose_deque_;
+  std::deque<nav_msgs::OccupancyGridPtr> costmap_deque_;
 
-    ros::Time timestamp_;
+  geometry_msgs::PoseWithCovarianceStampedPtr current_init_pose_ptr_;
+  geometry_msgs::PoseStampedPtr current_goal_pose_ptr_;
+  nav_msgs::OccupancyGridPtr current_costmap_ptr_;
 
-    bool has_map_{};
+  ros::Time timestamp_;
+  bool once_ = false;
+
+  bool has_map_{};
 };
 
-#endif //HYBRID_A_STAR_HYBRID_A_STAR_FLOW_H
+#endif  // HYBRID_A_STAR_HYBRID_A_STAR_FLOW_H
