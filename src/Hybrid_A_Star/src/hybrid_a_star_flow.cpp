@@ -138,10 +138,10 @@ void HybridAStarFlow::Run()
         Vec3d(155.27, 7.0817, -2.65406), Vec3d(128.851, 10.4664, 1.55712),
         Vec3d(128.851, 70.0902, 1.57),   Vec3d(128.851, 120.864, 1.57)  // 回到起点
     };
-
+    size_t points_length = sizeof(points) / sizeof(points[0]);
     VectorVec3d path;
     path.clear();
-    for (int i = 0; i < 7; ++i)
+    for (int i = 0; i < points_length - 1; ++i)
     {
       if (kinodynamic_astar_searcher_ptr_->Search(points[i], points[i + 1]))
       {
