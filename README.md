@@ -14,7 +14,22 @@ You can then upload your own map. The recommended resolution is approximately 10
 
 
 
+### Quick Start
+
+You can easily run the program by the following command:
+
+```shell
+git clone https://github.com/MOEA-LAB/Hybrid-Astar.git
+cd Hybrid-Astar
+catkin_make
+./run.sh
+```
+
+
+
 **The following is the README.md**
+
+---
 
 ### Hybrid A* Path Planner for the KTH Research Concept Vehicle [![Build Status](https://app.travis-ci.com/karlkurzer/path_planner.svg?branch=master)](https://travis-ci.org/karlkurzer/path_planner)
 
