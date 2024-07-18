@@ -1,0 +1,4 @@
+Symlinking /home/dwl/Hybrid-Astar/devel/lib/comm_hub/comm_hub_node
+Symlinking /home/dwl/Hybrid-Astar/devel/lib/pkgconfig/comm_hub.pc
+Symlinking /home/dwl/Hybrid-Astar/devel/share/comm_hub/cmake/comm_hubConfig.cmake
+Symlinking /home/dwl/Hybrid-Astar/devel/share/comm_hub/cmake/comm_hubConfig-version.cmake

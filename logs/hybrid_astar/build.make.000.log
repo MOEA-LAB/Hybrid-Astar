@@ -1,0 +1,33 @@
+[35m[1mScanning dependencies of target HYAS[0m
+[35m[1mScanning dependencies of target tf_broadcaster[0m
+[35m[1mScanning dependencies of target hybrid_astar[0m
+[  3%] [32mBuilding CXX object CMakeFiles/tf_broadcaster.dir/src/tf_broadcaster.cpp.o[0m
+[ 14%] [32mBuilding CXX object CMakeFiles/HYAS.dir/src/node3d.cpp.o[0m
+[ 14%] [32mBuilding CXX object CMakeFiles/HYAS.dir/src/algorithm.cpp.o[0m
+[ 18%] [32mBuilding CXX object CMakeFiles/HYAS.dir/src/node2d.cpp.o[0m
+[ 18%] [32mBuilding CXX object CMakeFiles/hybrid_astar.dir/src/main.cpp.o[0m
+[ 22%] [32mBuilding CXX object CMakeFiles/HYAS.dir/src/planner.cpp.o[0m
+[ 25%] [32mBuilding CXX object CMakeFiles/HYAS.dir/src/collisiondetection.cpp.o[0m
+[ 29%] [32mBuilding CXX object CMakeFiles/hybrid_astar.dir/src/collisiondetection.cpp.o[0m
+[ 37%] [32mBuilding CXX object CMakeFiles/hybrid_astar.dir/src/algorithm.cpp.o[0m
+[ 37%] [32mBuilding CXX object CMakeFiles/hybrid_astar.dir/src/node2d.cpp.o[0m
+[ 40%] [32mBuilding CXX object CMakeFiles/HYAS.dir/src/path.cpp.o[0m
+[ 44%] [32mBuilding CXX object CMakeFiles/hybrid_astar.dir/src/visualize.cpp.o[0m
+[ 48%] [32mBuilding CXX object CMakeFiles/hybrid_astar.dir/src/path.cpp.o[0m
+[ 51%] [32mBuilding CXX object CMakeFiles/hybrid_astar.dir/src/bucketedqueue.cpp.o[0m
+[ 59%] [32mBuilding CXX object CMakeFiles/hybrid_astar.dir/src/node3d.cpp.o[0m
+[ 59%] [32mBuilding CXX object CMakeFiles/HYAS.dir/src/smoother.cpp.o[0m
+[ 62%] [32mBuilding CXX object CMakeFiles/hybrid_astar.dir/src/planner.cpp.o[0m
+[ 66%] [32mBuilding CXX object CMakeFiles/hybrid_astar.dir/src/smoother.cpp.o[0m
+[ 74%] [32mBuilding CXX object CMakeFiles/HYAS.dir/src/visualize.cpp.o[0m
+[ 74%] [32mBuilding CXX object CMakeFiles/hybrid_astar.dir/src/dynamicvoronoi.cpp.o[0m
+[ 77%] [32mBuilding CXX object CMakeFiles/HYAS.dir/src/dynamicvoronoi.cpp.o[0m
+[ 81%] [32mBuilding CXX object CMakeFiles/hybrid_astar.dir/src/dubins.cpp.o[0m
+[ 85%] [32mBuilding CXX object CMakeFiles/HYAS.dir/src/dubins.cpp.o[0m
+[ 88%] [32mBuilding CXX object CMakeFiles/HYAS.dir/src/bucketedqueue.cpp.o[0m
+[ 92%] [32m[1mLinking CXX executable /home/dwl/Hybrid-Astar/devel/.private/hybrid_astar/lib/hybrid_astar/tf_broadcaster[0m
+[ 92%] Built target tf_broadcaster
+[ 96%] [32m[1mLinking CXX executable /home/dwl/Hybrid-Astar/devel/.private/hybrid_astar/lib/hybrid_astar/hybrid_astar[0m
+[100%] [32m[1mLinking CXX shared library libHYAS.so[0m
+[100%] Built target HYAS
+[100%] Built target hybrid_astar

@@ -1,0 +1,48 @@
+[35m[1mScanning dependencies of target std_msgs_generate_messages_lisp[0m
+[35m[1mScanning dependencies of target roscpp_generate_messages_eus[0m
+[35m[1mScanning dependencies of target serial_ros_generate_messages_cpp[0m
+[35m[1mScanning dependencies of target rosgraph_msgs_generate_messages_eus[0m
+[35m[1mScanning dependencies of target roscpp_generate_messages_nodejs[0m
+[35m[1mScanning dependencies of target rosgraph_msgs_generate_messages_nodejs[0m
+[35m[1mScanning dependencies of target roscpp_generate_messages_py[0m
+[35m[1mScanning dependencies of target rosgraph_msgs_generate_messages_py[0m
+[35m[1mScanning dependencies of target std_msgs_generate_messages_eus[0m
+[35m[1mScanning dependencies of target roscpp_generate_messages_cpp[0m
+[35m[1mScanning dependencies of target std_msgs_generate_messages_cpp[0m
+[35m[1mScanning dependencies of target serial_ros_generate_messages_lisp[0m
+[35m[1mScanning dependencies of target rosgraph_msgs_generate_messages_cpp[0m
+[35m[1mScanning dependencies of target std_msgs_generate_messages_py[0m
+[35m[1mScanning dependencies of target roscpp_generate_messages_lisp[0m
+[35m[1mScanning dependencies of target serial_ros_generate_messages_eus[0m
+[35m[1mScanning dependencies of target serial_ros_generate_messages_py[0m
+[35m[1mScanning dependencies of target rosgraph_msgs_generate_messages_lisp[0m
+[35m[1mScanning dependencies of target std_msgs_generate_messages_nodejs[0m
+[35m[1mScanning dependencies of target serial_ros_generate_messages_nodejs[0m
+[  0%] Built target rosgraph_msgs_generate_messages_eus
+[  0%] Built target serial_ros_generate_messages_cpp
+[  0%] Built target roscpp_generate_messages_eus
+[  0%] Built target rosgraph_msgs_generate_messages_nodejs
+[  0%] Built target std_msgs_generate_messages_lisp
+[  0%] Built target roscpp_generate_messages_py
+[  0%] Built target roscpp_generate_messages_nodejs
+[  0%] Built target roscpp_generate_messages_cpp
+[  0%] Built target std_msgs_generate_messages_eus
+[  0%] Built target rosgraph_msgs_generate_messages_py
+[  0%] Built target std_msgs_generate_messages_cpp
+[  0%] Built target rosgraph_msgs_generate_messages_cpp
+[  0%] Built target rosgraph_msgs_generate_messages_lisp
+[  0%] Built target serial_ros_generate_messages_eus
+[  0%] Built target serial_ros_generate_messages_nodejs
+[  0%] Built target serial_ros_generate_messages_lisp
+[  0%] Built target serial_ros_generate_messages_py
+[  0%] Built target std_msgs_generate_messages_py
+[  0%] Built target std_msgs_generate_messages_nodejs
+[  0%] Built target roscpp_generate_messages_lisp
+[35m[1mScanning dependencies of target pure_pursuit[0m
+[ 16%] [32mBuilding CXX object CMakeFiles/pure_pursuit.dir/src/arc_length_spline.cpp.o[0m
+[ 33%] [32mBuilding CXX object CMakeFiles/pure_pursuit.dir/src/pure_pursuit_node.cpp.o[0m
+[ 66%] [32mBuilding CXX object CMakeFiles/pure_pursuit.dir/src/cubic_spline.cpp.o[0m
+[ 66%] [32mBuilding CXX object CMakeFiles/pure_pursuit.dir/src/pure_pursuit.cpp.o[0m
+[ 83%] [32mBuilding CXX object CMakeFiles/pure_pursuit.dir/src/track.cpp.o[0m
+[100%] [32m[1mLinking CXX executable /home/dwl/Hybrid-Astar/devel/.private/pure_pursuit/lib/pure_pursuit/pure_pursuit[0m
+[100%] Built target pure_pursuit

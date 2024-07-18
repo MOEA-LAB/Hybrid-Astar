@@ -1,0 +1,7 @@
+[35m[1mScanning dependencies of target comm_hub_node[0m
+[ 80%] [32mBuilding CXX object CMakeFiles/comm_hub_node.dir/src/comm_hub_node.cpp.o[0m
+[ 80%] [32mBuilding CXX object CMakeFiles/comm_hub_node.dir/src/comm_hub.cpp.o[0m
+[ 80%] [32mBuilding CXX object CMakeFiles/comm_hub_node.dir/src/myUdp.cpp.o[0m
+[ 80%] [32mBuilding CXX object CMakeFiles/comm_hub_node.dir/src/myMsg.cpp.o[0m
+[100%] [32m[1mLinking CXX executable /home/dwl/Hybrid-Astar/devel/.private/comm_hub/lib/comm_hub/comm_hub_node[0m
+[100%] Built target comm_hub_node

@@ -1,2 +1,0 @@
-geometry_msgs/PoseWithCovarianceStamped[] poseMsgs
-string carId

@@ -1,3 +1,21 @@
+### User-Defined Map
+
+This version provides a self-defined map option and removes the simulation. You can run it by selecting the start point and end point in Rviz.
+
+Modify the file at `src/path_planner/maps/map.yaml`. Pay attention to the following:
+
+- Do not modify the `resolution: 1`. The resolution must be 1!
+
+You can then upload your own map. The recommended resolution is approximately 100x100.
+
+**example:**
+
+![image-20240718203458657](./assets/image-20240718203458657.png)
+
+
+
+**The following is the README.md**
+
 ### Hybrid A* Path Planner for the KTH Research Concept Vehicle [![Build Status](https://app.travis-ci.com/karlkurzer/path_planner.svg?branch=master)](https://travis-ci.org/karlkurzer/path_planner)
 
 This repository contains the implementation of a Hybrid A* Path Planner for autonomous vehicles, specifically developed for the KTH Research Concept Vehicle. The Hybrid A* algorithm is a powerful path planning approach that combines the benefits of A* search in continuous space with a discretized set of headings. It enables the generation of efficient and smooth paths for nonholonomic vehicles navigating complex environments.

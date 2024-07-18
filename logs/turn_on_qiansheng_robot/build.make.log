@@ -1,0 +1,5 @@
+[35m[1mScanning dependencies of target qiansheng_robot_node[0m
+[ 66%] [32mBuilding CXX object CMakeFiles/qiansheng_robot_node.dir/src/qiansheng_robot.cpp.o[0m
+[ 66%] [32mBuilding CXX object CMakeFiles/qiansheng_robot_node.dir/src/Quaternion_Solution.cpp.o[0m
+[100%] [32m[1mLinking CXX executable /home/dwl/Hybrid-Astar/devel/.private/turn_on_qiansheng_robot/lib/turn_on_qiansheng_robot/qiansheng_robot_node[0m
+[100%] Built target qiansheng_robot_node

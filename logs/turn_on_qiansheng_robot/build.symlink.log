@@ -1,0 +1,4 @@
+Symlinking /home/dwl/Hybrid-Astar/devel/lib/pkgconfig/turn_on_qiansheng_robot.pc
+Symlinking /home/dwl/Hybrid-Astar/devel/lib/turn_on_qiansheng_robot/qiansheng_robot_node
+Symlinking /home/dwl/Hybrid-Astar/devel/share/turn_on_qiansheng_robot/cmake/turn_on_qiansheng_robotConfig-version.cmake
+Symlinking /home/dwl/Hybrid-Astar/devel/share/turn_on_qiansheng_robot/cmake/turn_on_qiansheng_robotConfig.cmake
